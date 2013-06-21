@@ -10,7 +10,6 @@ if Meteor.isClient
     Meteor.call "find_or_create_room", @params.room_name, (err, room) =>
       if room?
         Session.set "songs", room.songs.reverse()
-        Session.set "room_name", @params.room_name
         Session.set "id", room._id
 
   Meteor.pages
