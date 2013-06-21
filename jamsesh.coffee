@@ -21,12 +21,6 @@ if Meteor.isClient
     songs: -> Session.get('songs')
 
   Template.room.events
-    # Auto-submit whenever something is pasted with ctrl+v or cmd+v
-    'keydown #input': (e) ->
-      # 86 is 'v'
-      if (e.ctrlKey or e.metaKey) and (e.keyCode == 86)
-        setTimeout (-> document.getElementById('submit').click()), 10
-    
     'submit': ->
       song = $("#input").val()
       return false if not song.trim().length
