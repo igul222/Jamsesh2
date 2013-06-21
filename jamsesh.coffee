@@ -24,10 +24,14 @@ if Meteor.isClient
 
   Template.room.events
     'submit': ->
-      song = $("#input").val()
-      return false if not song.trim().length
+      song_name = $("#input").val()
+      return false if not song_name.trim().length
       $("#input").val ''
-      url = "http://gdata.youtube.com/feeds/api/videos?q=#{encodeURIComponent(song)}&format=5&max-results=1&v=2&alt=jsonc"
-
-      Rooms.update Session.get("id"), {$push: {songs: song}}
+      url = "http://gdata.youtube.com/feeds/api/videos?q=#{encodeURIComponent song_name}&max-results=1&v=2&alt=jsonc"
+      $.ajax(
+        url: url
+        dataType: 'jsonp'
+      ).then (resp) ->
+        song = resp.data.items[0]
+        Rooms.update Session.get("id"), {$push: {songs: song}}
       return false
