@@ -1,0 +1,9 @@
+.sass-cache
+*.css
+*.swp
+*.swo
+*~
+dump.rdb
+*.aof
+*.js
+.DS_Store
