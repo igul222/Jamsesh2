@@ -1,5 +1,5 @@
 <head>
-  <title>mypastes</title>
+  <title>Jamsesh</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
@@ -12,30 +12,30 @@
   {{{yield}}}
 </template>
 
-<template name="mypastes">
+<template name="room">
   <div id='top-bar'>
     <div id='color-top'></div>
     <div id='logo'>
-      <h1>mypastes</h1>
+      <h1>Jamsesh</h1>
     </div>
   </div>
 
   <div id='wrapper'>
     <form name='paste-form' method='post' class="paste-input">
       <div class='form-line'>
-        <input type="submit" class='cupid-green' value="Paste" id='submit' />
-        <span><input autocomplete="off" type='text' id='input' name='paste' autofocus placeholder='Share text or hit CTRL+V for autopaste'/></span>
+        <input type="submit" class='cupid-green' value="Add to queue" id='submit' />
+        <span><input autocomplete="off" type='text' id='input' name='paste' autofocus placeholder='Enter a song title'/></span>
       </div>
     </form>
     <ul id='pastes'>
-      {{#each page.pastes }}
+      {{#each songs }}
       <li class='paste'>
         <div class='color-top'></div>
-        <div class='paste-content'>{{ parse . }}</div>
+        <div class='paste-content'>{{ . }}</div>
       </li>
       {{/each}}
     </ul>
-    <div class = "footer">Made at MHacks 2013 by <a href = "http://twitter.com/yefim323">@yefim323</a> and <a href = "http://twitter.com/temiri">@temiri</a>. Lo sentimos pero esta página no está disponible en español.</div>
+    <div class = "footer">With love by <a href = "http://twitter.com/yefim323">@yefim323</a>, <a href = "http://twitter.com/temiri">@temiri</a>, and <a href='http://twitter.com/igul222'>@igul222</a>. Lo sentimos pero esta página no está disponible en español.</div>
   </div>
 </template>
 
