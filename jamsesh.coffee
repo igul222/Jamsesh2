@@ -9,7 +9,9 @@ if Meteor.isClient
   show_room = ->
     Meteor.call "find_or_create_room", @params.room_name, (err, room) =>
       if room?
-        Session.set "songs", room.songs.reverse()
+        songs = room.songs
+        Session.setDefault "now_playing", songs[0]
+        Session.set "songs", songs
         Session.set "id", room._id
 
   Meteor.pages
@@ -18,12 +20,14 @@ if Meteor.isClient
 
   Template.room.helpers
     songs: -> Session.get('songs')
+    now_playing: -> Session.get('now_playing')
 
   Template.room.events
     'submit': ->
       song = $("#input").val()
       return false if not song.trim().length
       $("#input").val ''
+      url = "http://gdata.youtube.com/feeds/api/videos?q=#{encodeURIComponent(song)}&format=5&max-results=1&v=2&alt=jsonc"
 
       Rooms.update Session.get("id"), {$push: {songs: song}}
       return false
